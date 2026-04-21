@@ -22,7 +22,11 @@ function changeLocale(lang) {
 }
 
 onMounted(async () => {
-  await settingsStore.fetchProfiles()
+  try {
+    await settingsStore.fetchProfiles()
+  } catch {
+    // Backend may be unreachable – app shell still renders
+  }
 })
 </script>
 

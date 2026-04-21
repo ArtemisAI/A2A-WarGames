@@ -1,3 +1,8 @@
+# Claude Code / Playwright
+.mcp.json
+.playwright/
+.playwright-cli/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -13,10 +18,25 @@ build/
 venv/
 env/
 
-# Environment / secrets
+# Environment / secrets — NEVER commit real credentials
 .env
+.env.*
+!.env.example
 *.env.local
 .mcp.json
+
+# Private keys / certificates
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Vercel / Fly.io local state (may contain org/project IDs)
+.vercel/
+.fly/
+
+# npm auth tokens
+.npmrc
 
 # Database
 *.db
@@ -94,6 +114,12 @@ frontend/.claude/
 # Playwright CLI artifacts
 .playwright-cli/
 
+# Seafile sync config
+.seafile-ignore
+
+# Temp files
+tmp_*.txt
+
 # Handover docs (session-specific)
 HANDOVER.md
 security_violation.md
@@ -106,4 +132,3 @@ docs/*
 !docs/DEPLOYMENT.md
 !docs/PRD.md
 !docs/oauth-setup.md
-

@@ -22,6 +22,7 @@ const store = useSettingsStore()
 const providersStore = useProvidersStore()
 const loading = ref(false)
 const saved = ref(false)
+const saveError = ref('')
 const form = ref(null)
 const activeTab = ref('llm')
 const availableModels = ref([])
@@ -178,22 +179,39 @@ onMounted(async () => {
     selectTab(route.query.tab, false)
   }
   if (auth.isGuest) return
-  await store.fetchProfiles()
-  if (store.activeProfile) {
-    form.value = profileToForm(store.activeProfile)
-    const existingFlags = store.activeProfile.feature_flags || {}
-    featureFlags.value = { ...defaultFlags, ...existingFlags }
-  }
-  await Promise.all([
-    fetchModels(),
-    providersStore.fetchPresets(),
-    providersStore.fetchKeys(),
-    providersStore.fetchModelRegistry(),
-  ])
   try {
-    const { data } = await getAvailableVoices()
-    if (data?.voices?.length) availableVoices.value = data.voices
-  } catch { /* keep defaults */ }
+    await store.fetchProfiles()
+    if (store.activeProfile) {
+      form.value = profileToForm(store.activeProfile)
+      const existingFlags = store.activeProfile.feature_flags || {}
+      featureFlags.value = { ...defaultFlags, ...existingFlags }
+    } else {
+      // No profile yet — initialize with defaults so all tabs render
+      form.value = profileToForm({
+        profile_name: 'default',
+        base_url: '',
+        api_key: '',
+        default_model: '',
+        chairman_model: '',
+        council_models: [],
+        temperature: 0.8,
+        max_tokens: 1024,
+        feature_flags: {},
+      })
+    }
+    await Promise.all([
+      fetchModels(),
+      providersStore.fetchPresets(),
+      providersStore.fetchKeys(),
+      providersStore.fetchModelRegistry(),
+    ]).catch(() => { /* individual fetches already handle errors */ })
+    try {
+      const { data } = await getAvailableVoices()
+      if (data?.voices?.length) availableVoices.value = data.voices
+    } catch { /* keep defaults */ }
+  } catch (e) {
+    console.warn('[Settings] Backend unreachable, showing defaults:', e.message)
+  }
 })
 
 watch(() => route.query.tab, (tab) => {
@@ -204,15 +222,19 @@ watch(() => route.query.tab, (tab) => {
 
 async function save() {
   loading.value = true
+  saveError.value = ''
   try {
     const payload = {
       ...form.value,
-      council_models: form.value.council_models.split(',').map(s => s.trim()).filter(Boolean),
+      council_models: (form.value.council_models || '').split(',').map(s => s.trim()).filter(Boolean),
     }
     await store.saveProfile(payload)
     saved.value = true
     setTimeout(() => { saved.value = false }, 2500)
     await store.fetchProfiles()
+  } catch (e) {
+    saveError.value = e?.response?.data?.detail || e?.message || 'Failed to save settings.'
+    setTimeout(() => { saveError.value = '' }, 5000)
   } finally {
     loading.value = false
   }
@@ -220,6 +242,7 @@ async function save() {
 
 async function saveFeatureFlags() {
   loading.value = true
+  saveError.value = ''
   try {
     const profileName = store.activeProfile?.profile_name
     if (!profileName) return
@@ -231,6 +254,9 @@ async function saveFeatureFlags() {
     saved.value = true
     setTimeout(() => { saved.value = false }, 2500)
     await store.fetchProfiles()
+  } catch (e) {
+    saveError.value = e?.response?.data?.detail || e?.message || 'Failed to save settings.'
+    setTimeout(() => { saveError.value = '' }, 5000)
   } finally {
     loading.value = false
   }
@@ -267,6 +293,11 @@ function changeLocale(lang) {
         {{ t('guest.settingsRequireAuth') }}
       </p>
       <button class="btn btn-primary" @click="showLogin = true">{{ t('nav.signIn') }}</button>
+    </div>
+
+    <!-- Save error banner -->
+    <div v-if="saveError" style="margin-bottom: 12px; padding: 10px 14px; background: var(--danger-bg, #fee2e2); color: var(--danger, #dc2626); border-radius: 6px; font-size: 14px;">
+      {{ saveError }}
     </div>
 
     <!-- Tab bar -->

@@ -50,6 +50,7 @@ const routes = [
     },
   },
   { path: '/settings', component: () => import('../pages/SettingsPage.vue'), meta: { breadcrumb: [{ to: '/settings', labelKey: 'nav.settings' }] } },
+  { path: '/docs', component: () => import('../pages/DocsPage.vue'), meta: { breadcrumb: [{ to: '/docs', labelKey: 'nav.docs' }] } },
 ]
 
 export default createRouter({

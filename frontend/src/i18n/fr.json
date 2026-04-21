@@ -13,7 +13,8 @@
     "liveView": "Vue en direct",
     "analytics": "Analytique",
     "signIn": "Se connecter",
-    "signOut": "Se déconnecter"
+    "signOut": "Se déconnecter",
+    "docs": "Docs"
   },
   "theme": {
     "dark": "Sombre",
@@ -55,7 +56,7 @@
   "projects": {
     "title": "Projets",
     "subtitle": "Chaque projet est un contexte d'analyse des parties prenantes indépendant",
-    "loadDemo": "Charger la démo (Northbridge)",
+    "loadDemo": "Charger les projets démo",
     "newProject": "+ Nouveau projet",
     "noProjects": "Aucun projet. Créez votre premier projet.",
     "stakeholders": "parties prenantes",
@@ -262,7 +263,7 @@
     "saveSettings": "Enregistrer les paramètres",
     "saved": "✓ Enregistré",
     "aboutEndpoint": "À propos de ce point de terminaison",
-    "aboutEndpointText": "A2A War Games utilise n'importe quelle API compatible OpenAI. Configurez votre fournisseur LLM dans la page Paramètres — OpenAI, Ollama, LM Studio, Together, Groq ou tout autre fournisseur compatible OAI. Anthropic Claude est pris en charge nativement — entrez votre clé API Anthropic et définissez l'URL sur https://api.anthropic.com/v1.",
+    "aboutEndpointText": "A2A War Games fonctionne avec n'importe quelle API compatible OpenAI. Vous pouvez utiliser OpenAI, Ollama, LM Studio, Together, Groq ou tout autre fournisseur compatible OAI. Anthropic Claude est pris en charge nativement — entrez votre clé API Anthropic et définissez l'URL sur https://api.anthropic.com/v1.",
     "providerQuickSetup": "Configuration rapide — Préréglages de fournisseurs",
     "providerQuickSetupHint": "Cliquez sur un fournisseur pour préremplir l'URL de base. Entrez ensuite votre clé API et choisissez un modèle.",
     "nativeBadge": "SDK natif",
@@ -570,5 +571,147 @@
     "share": "Partager",
     "unshare": "Rendre privé",
     "noCommunity": "Aucun projet communautaire pour l'instant. Soyez le premier à partager !"
+  },
+  "landing": {
+    "heroBadge": "Plateforme de recherche du protocole A2A",
+    "heroTitleLine1": "Simulation de débat",
+    "heroTitleAccent": "multi-agents",
+    "heroSubtitle": "Observez des agents LLM autonomes négocier, contester et atteindre un consensus lors de débats structurés. Chaque partie prenante est un agent indépendant avec sa propre persona, ses biais cognitifs et ses contraintes stratégiques.",
+    "launchSimulation": "Lancer la simulation",
+    "tryDemo": "Essayer la démo",
+    "statAgents": "Agents autonomes",
+    "statProviders": "Fournisseurs LLM",
+    "statLanguages": "Langues",
+    "showcaseTitle": "Débat en direct — Northbridge",
+    "protocolLabel": "Comment ça marche",
+    "protocolTitle": "Le protocole A2A",
+    "protocolSubtitle": "Communication structurée agent-à-agent pour des scénarios de négociation multipartites",
+    "pipeline": {
+      "moderator": {
+        "title": "Modérateur",
+        "desc": "Cadre les tours, conteste les arguments faibles"
+      },
+      "selection": {
+        "title": "Sélection du locuteur",
+        "desc": "Sélection pondérée par l'influence"
+      },
+      "agents": {
+        "title": "Agents parties prenantes",
+        "desc": "Agents LLM indépendants avec personas"
+      },
+      "observer": {
+        "title": "Observateur",
+        "desc": "Extraction du sentiment, des positions et des risques"
+      },
+      "analytics": {
+        "title": "Analytique",
+        "desc": "Consensus, coalitions, carte d'influence"
+      }
+    },
+    "protocolFeatures": {
+      "personas": {
+        "title": "Personas riches",
+        "desc": "Chaque agent possède des biais cognitifs, une MESORE, des contraintes strictes et des directives anti-sycophantie"
+      },
+      "rounds": {
+        "title": "Tours structurés",
+        "desc": "Flux de débat dirigé par le modérateur avec phases d'introduction, de contestation et de synthèse"
+      },
+      "streaming": {
+        "title": "Diffusion en temps réel",
+        "desc": "Les événements SSE diffusent la progression du débat en direct dans l'interface"
+      }
+    },
+    "capabilitiesLabel": "Plateforme",
+    "capabilitiesTitle": "Capacités clés",
+    "capabilitiesSubtitle": "Moteur de simulation de qualité entreprise pour des dynamiques complexes entre parties prenantes",
+    "capabilities": {
+      "orchestration": {
+        "title": "Orchestration multi-agents",
+        "desc": "A2AEngine coordonne 7+ agents autonomes avec un raisonnement indépendant et des contraintes stratégiques"
+      },
+      "adkar": {
+        "title": "Modélisation ADKAR",
+        "desc": "Chaque agent a un suivi de conscience, désir, connaissance, capacité et renforcement"
+      },
+      "whisper": {
+        "title": "Canaux privés",
+        "desc": "Fils privés agent-à-agent pour des échanges bilatéraux séparés du débat public"
+      },
+      "memory": {
+        "title": "Mémoire d'agent",
+        "desc": "Recherche sémantique pgvector + S-BERT avec décroissance de la mémoire et promotion inter-sessions"
+      },
+      "analytics": {
+        "title": "Analytique en direct",
+        "desc": "Score de consensus, détection de coalitions, cartographie de l'influence et alertes de risque en temps réel"
+      },
+      "dag": {
+        "title": "Visualisation DAG",
+        "desc": "Graphe de force dirigé D3.js montrant les relations d'accord/désaccord entre agents"
+      },
+      "security": {
+        "title": "Sécurité multi-locataires",
+        "desc": "Les politiques RLS de Supabase garantissent que chaque utilisateur ne voit que ses propres projets et simulations"
+      },
+      "i18n": {
+        "title": "Support i18n",
+        "desc": "Locales anglais, français et espagnol avec vue-i18n pour une accessibilité mondiale"
+      }
+    },
+    "techLabel": "Stack",
+    "techTitle": "Stack technique moderne",
+    "techSubtitle": "Construit avec des frameworks de production et les meilleures pratiques",
+    "tech": {
+      "frontend": {
+        "title": "Frontend"
+      },
+      "backend": {
+        "title": "Backend"
+      }
+    },
+    "llmCompat": "Compatibilité LLM",
+    "ctaTitle": "Prêt à explorer ?",
+    "ctaSubtitle": "Commencez à simuler des débats multi-agents en quelques minutes. Essayez le scénario de démo Northbridge avec 7 parties prenantes préconfigurées.",
+    "ctaLaunch": "Lancer la démo",
+    "ctaDocs": "Lire la documentation",
+    "footerBrand": "A2A War Games",
+    "footerTagline": "Plateforme de simulation de débat multi-agents",
+    "footerIssues": "Problèmes",
+    "footerCopyright": "© 2026 ArtemisAI — Licence MIT"
+  },
+  "docs": {
+    "label": "Documentation",
+    "title": "Documentation",
+    "subtitle": "Tout ce dont vous avez besoin pour construire, exécuter et étendre des simulations de débat multi-agents.",
+    "apiReference": "Référence API",
+    "shortcuts": "Raccourcis clavier",
+    "externalLinks": "Ressources & Liens",
+    "sections": {
+      "getting-started": {
+        "title": "Premiers pas",
+        "content": "<p><strong>A2A War Games</strong> est une plateforme de simulation de débat multi-agents. Chaque partie prenante est un agent LLM autonome avec sa propre persona, ses biais cognitifs et ses contraintes stratégiques.</p><p>Pour commencer :</p><ul><li>Créez un <strong>Projet</strong> — un contexte d'analyse des parties prenantes indépendant</li><li>Ajoutez des <strong>Parties prenantes</strong> — configurez les personas avec scores ADKAR, MESORE et biais</li><li>Créez une <strong>Session</strong> — posez une question stratégique au conseil</li><li>Cliquez sur <strong>Lancer la simulation</strong> et observez les agents débattre en temps réel</li></ul>"
+      },
+      "architecture": {
+        "title": "Architecture",
+        "content": "<p>La plateforme suit une séparation claire entre <strong>Frontend</strong> (Vue 3 + Vite) et <strong>Backend</strong> (FastAPI + PostgreSQL/Supabase).</p><ul><li><strong>Frontend :</strong> Vue 3 avec Composition API, gestion d'état Pinia, vue-i18n, Chart.js + D3.js pour la visualisation</li><li><strong>Backend :</strong> FastAPI avec SQLAlchemy ORM, Supabase pour l'auth + RLS, pgvector pour la mémoire sémantique</li><li><strong>Couche LLM :</strong> Appels API compatibles OpenAI, supportant tout fournisseur</li><li><strong>Temps réel :</strong> Server-Sent Events (SSE) pour la diffusion en direct de la progression du débat</li></ul>"
+      },
+      "agents": {
+        "title": "Système d'agents",
+        "content": "<p>Chaque agent est configuré avec un profil comportemental riche :</p><ul><li><strong>Persona :</strong> Nom, rôle, département, couleur, citations clés et signaux</li><li><strong>Scores ADKAR :</strong> Conscience, Désir, Connaissance, Capacité, Renforcement (1–5)</li><li><strong>Saillance :</strong> Pouvoir, Légitimité, Urgence (modèle Mitchell, Agle & Wood)</li><li><strong>Profil stratégique :</strong> MESORE, contraintes strictes, critères de succès, biais cognitifs</li><li><strong>Anti-sycophantie :</strong> Directives par agent pour prévenir la pensée de groupe</li><li><strong>Substitution LLM :</strong> Assignez optionnellement un modèle différent à chaque agent</li></ul>"
+      },
+      "sessions": {
+        "title": "Sessions & Débats",
+        "content": "<p>Les sessions sont des exécutions de wargame où les agents débattent d'une question stratégique.</p><ul><li><strong>Modérateur :</strong> Un agent LLM qui cadre les tours, conteste les arguments faibles et synthétise les idées</li><li><strong>Sélection du locuteur :</strong> Sélection pondérée par l'influence</li><li><strong>Canaux privés :</strong> Fils bilatéraux privés entre agents</li><li><strong>Stratégie de fenêtre de contexte :</strong> Modes Complet, 2 derniers tours ou Synthèse uniquement</li><li><strong>Injection de messages :</strong> Intervenez en tant que modérateur pendant les débats en direct</li><li><strong>Pause/Reprise/Récupération :</strong> Contrôle complet du cycle de vie de la session</li></ul>"
+      },
+      "analytics": {
+        "title": "Analytique & Métriques",
+        "content": "<p>Des analyses en temps réel et post-session fournissent un aperçu approfondi des dynamiques de débat :</p><ul><li><strong>Score de consensus :</strong> Suivi à travers les tours avec visualisation de trajectoire</li><li><strong>Détection de coalitions :</strong> Regroupement automatique des agents alignés</li><li><strong>Cartographie de l'influence :</strong> Classement par centralité d'eigenvector et d'intermédiarité</li><li><strong>Évaluation des risques :</strong> Score, niveau et analyse des facteurs</li><li><strong>Visualisation DAG :</strong> Graphe de force dirigé D3.js montrant les relations d'accord/désaccord</li><li><strong>Matrice de vote :</strong> Suivi des positions agent par agent sur les points de l'agenda</li></ul>"
+      },
+      "providers": {
+        "title": "Fournisseurs LLM",
+        "content": "<p>A2A War Games supporte tout point d'accès API compatible OpenAI. Les fournisseurs supportés incluent :</p><ul><li><strong>OpenAI</strong> — GPT-4o, GPT-4-turbo, GPT-3.5-turbo</li><li><strong>Anthropic</strong> — Claude 3.5 Sonnet, Claude 3 Opus (SDK natif)</li><li><strong>Ollama</strong> — Modèles locaux (Llama 3, Mistral, Phi-3)</li><li><strong>Groq</strong> — Inférence ultra-rapide (Llama, Mixtral)</li><li><strong>Together AI</strong> — Hébergement de modèles open-source</li><li><strong>LM Studio</strong> — Serveur de modèles local</li></ul><p>Configurez les fournisseurs dans <strong>Paramètres → Fournisseurs LLM</strong>. Chaque fournisseur peut être testé avec un test de connexion en un clic.</p>"
+      }
+    }
   }
 }

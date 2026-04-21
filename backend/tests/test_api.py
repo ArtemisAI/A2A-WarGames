@@ -5754,8 +5754,8 @@ def test_seed_skips_project_when_already_exists():
 
     db = TestSession()
     try:
-        sia_count = db.query(m.Project).filter_by(name="Northbridge City — Smart Infrastructure Initiative").count()
-        assert sia_count == 1  # No duplicate Northbridge created
+        count = db.query(m.Project).count()
+        assert count == 1  # No duplicate created
     finally:
         db.close()
 
@@ -7787,7 +7787,6 @@ async def test_continue_session_409_already_running(client):
 
 @pytest.mark.anyio
 async def test_continue_session_400_additional_rounds_zero(client):
-    """continue_session returns 400/422 when additional_rounds < 1.
 
     Pydantic's ge=1 constraint fires a 422 Unprocessable Entity before the
     manual 400 guard runs, so both are acceptable validation-rejection codes.

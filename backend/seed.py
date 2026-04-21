@@ -371,7 +371,7 @@ def seed():
         ))
         print("Created default LLM settings profile.")
 
-    # --- Demo projects from JSON fixtures (includes demo scenarios) ---
+    # --- Demo projects from JSON fixtures (includes Northbridge) ---
     from .seed_demo import seed_fixtures
     seed_fixtures(db)
 

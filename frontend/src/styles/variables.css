@@ -74,6 +74,16 @@
   --tier-balanced: #3b82f6;
   --tier-quality: #8b5cf6;
   --tier-reasoning: #f59e0b;
+
+  /* Glassmorphism & effects */
+  --glass-bg: rgba(26, 26, 46, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 16px;
+  --glow-accent: 0 0 40px rgba(233, 69, 96, 0.25), 0 0 80px rgba(233, 69, 96, 0.1);
+  --glow-purple: 0 0 40px rgba(124, 92, 191, 0.25), 0 0 80px rgba(124, 92, 191, 0.1);
+  --gradient-hero: linear-gradient(135deg, rgba(233, 69, 96, 0.12) 0%, rgba(124, 92, 191, 0.08) 50%, rgba(41, 128, 185, 0.06) 100%);
+  --gradient-cta: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+  --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
 }
 
 :root[data-theme="light"] {
@@ -102,4 +112,13 @@
   --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.1), 0 6px 12px rgba(0, 0, 0, 0.06);
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.06);
+
+  /* Light mode glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glow-accent: 0 0 40px rgba(233, 69, 96, 0.12), 0 0 60px rgba(233, 69, 96, 0.06);
+  --glow-purple: 0 0 40px rgba(124, 92, 191, 0.12), 0 0 60px rgba(124, 92, 191, 0.06);
+  --gradient-hero: linear-gradient(135deg, rgba(233, 69, 96, 0.06) 0%, rgba(124, 92, 191, 0.04) 50%, rgba(41, 128, 185, 0.03) 100%);
+  --gradient-cta: linear-gradient(135deg, #f4f6f9 0%, #eef1f6 50%, #f4f6f9 100%);
+  --gradient-card: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
 }

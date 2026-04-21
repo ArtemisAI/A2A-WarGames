@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: a2a-wargames-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    region: ohio  # US East, close to Supabase
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: LLM_BASE_URL
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_DEFAULT_MODEL
+        sync: false
+      - key: LLM_COUNCIL_MODELS
+        sync: false
+      - key: LLM_CHAIRMAN_MODEL
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: DEBUG
+        value: "false"

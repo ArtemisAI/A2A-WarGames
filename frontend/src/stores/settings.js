@@ -12,10 +12,17 @@ export const useSettingsStore = defineStore('settings', () => {
   const selectedProvider = ref('')
 
   async function fetchProfiles() {
-    const r = await getSettingsProfiles()
-    profiles.value = r.data
-    activeProfile.value = r.data.find(p => p.is_active) || r.data[0] || null
-    return r.data
+    try {
+      const r = await getSettingsProfiles()
+      profiles.value = r.data
+      activeProfile.value = r.data.find(p => p.is_active) || r.data[0] || null
+      return r.data
+    } catch {
+      // Backend unreachable – keep defaults
+      profiles.value = []
+      activeProfile.value = null
+      return []
+    }
   }
 
   async function saveProfile(data) {

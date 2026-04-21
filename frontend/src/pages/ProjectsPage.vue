@@ -10,6 +10,7 @@ const router = useRouter()
 const store = useProjectStore()
 const modal = ref(null)
 const loading = ref(false)
+const error = ref('')
 
 const emptyForm = () => ({ name: '', description: '', organization: '', context: '' })
 const form = ref(emptyForm())
@@ -18,18 +19,23 @@ onMounted(() => store.fetchProjects())
 
 function openCreate() {
   form.value = emptyForm()
+  error.value = ''
   modal.value = 'create'
 }
 
 function openEdit(p) {
   form.value = { ...p }
+  error.value = ''
   modal.value = p
 }
 
 async function loadDemo() {
   loading.value = true
+  error.value = ''
   try {
     await store.loadDemo()
+  } catch (e) {
+    error.value = e?.response?.data?.detail || e?.message || t('projects.errorLoadDemo')
   } finally {
     loading.value = false
   }
@@ -38,10 +44,13 @@ async function loadDemo() {
 async function save() {
   if (!form.value.name.trim()) return
   loading.value = true
+  error.value = ''
   try {
     await store.saveProject(form.value)
     modal.value = null
     await store.fetchProjects()
+  } catch (e) {
+    error.value = e?.response?.data?.detail || e?.message || t('projects.errorSave')
   } finally {
     loading.value = false
   }
@@ -63,6 +72,10 @@ function goToStakeholders(p) {
         <button class="btn btn-ghost" @click="loadDemo" :disabled="loading">{{ t('projects.loadDemo') }}</button>
         <button class="btn btn-primary" @click="openCreate">{{ t('projects.newProject') }}</button>
       </div>
+    </div>
+
+    <div v-if="error" style="margin-bottom: 12px; padding: 10px 14px; background: var(--danger-bg, #fee2e2); color: var(--danger, #dc2626); border-radius: 6px; font-size: 14px;">
+      {{ error }}
     </div>
 
     <div v-if="store.projects.length === 0" class="empty-state">
@@ -101,6 +114,9 @@ function goToStakeholders(p) {
       <div class="form-group">
         <label class="form-label">{{ t('projects.orgContext') }}</label>
         <textarea class="form-textarea" style="min-height: 120px;" v-model="form.context" />
+      </div>
+      <div v-if="error" style="margin-bottom: 12px; padding: 10px 14px; background: var(--danger-bg, #fee2e2); color: var(--danger, #dc2626); border-radius: 6px; font-size: 14px;">
+        {{ error }}
       </div>
       <div class="modal-actions">
         <button class="btn btn-ghost" @click="modal = null">{{ t('projects.cancel') }}</button>

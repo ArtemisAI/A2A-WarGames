@@ -33,6 +33,7 @@ const dropdownOpen = ref(false)
         <li><RouterLink to="/projects">{{ t('nav.projects') }}</RouterLink></li>
         <li><RouterLink to="/sessions">{{ t('nav.sessions') }}</RouterLink></li>
         <li><RouterLink to="/settings">{{ t('nav.settings') }}<span v-if="isGuest" style="margin-left: 4px; font-size: 11px;">🔒</span></RouterLink></li>
+        <li><RouterLink to="/docs">{{ t('nav.docs') }}</RouterLink></li>
       </ul>
     </div>
     <div class="topbar-right">

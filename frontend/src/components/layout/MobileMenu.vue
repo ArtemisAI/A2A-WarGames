@@ -17,6 +17,7 @@ const emit = defineEmits(['close', 'sign-out', 'sign-in'])
       <RouterLink to="/projects">{{ t('nav.projects') }}</RouterLink>
       <RouterLink to="/sessions">{{ t('nav.sessions') }}</RouterLink>
       <RouterLink to="/settings">{{ t('nav.settings') }}</RouterLink>
+      <RouterLink to="/docs">{{ t('nav.docs') }}</RouterLink>
       <div class="mobile-menu-divider"></div>
       <template v-if="isAuthenticated">
         <button @click="emit('sign-out')">{{ t('nav.signOut') }}</button>

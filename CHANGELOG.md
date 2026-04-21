@@ -14,7 +14,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - GitHub OAuth sign-in: GitHub OAuth App created, Supabase provider enabled
 - Google "G" (4-color) and GitHub mark SVG logos on OAuth buttons in login modal
 - Sign-up flow: confirm-password field, post-signup email verification screen, "Back to sign in" link
-- `docs/oauth-setup.md`: end-to-end OAuth setup guide for Google and GitHub
+- OAuth setup documented (Google and GitHub providers via Supabase Auth)
 - Issues logged: #223 (i18n locale at runtime), #224 (empty agent responses), #225 (resume auth error)
 
 ### Fixed
