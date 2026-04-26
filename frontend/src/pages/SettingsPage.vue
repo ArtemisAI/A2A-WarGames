@@ -29,6 +29,7 @@ const availableModels = ref([])
 const modelsLoading = ref(false)
 const availableVoices = ref(["alloy", "echo", "fable", "onyx", "nova", "shimmer"])
 const selectedProviderId = ref(null)
+const signedInSettingsLoaded = ref(false)
 
 const defaultFlags = {
   thinking_bubbles: true,
@@ -174,11 +175,9 @@ function profileToForm(p) {
   }
 }
 
-onMounted(async () => {
-  if (typeof route.query.tab === 'string') {
-    selectTab(route.query.tab, false)
-  }
+async function loadSignedInSettings() {
   if (auth.isGuest) return
+  if (signedInSettingsLoaded.value) return
   try {
     await store.fetchProfiles()
     if (store.activeProfile) {
@@ -212,11 +211,29 @@ onMounted(async () => {
     const { data } = await getAvailableVoices()
     if (data?.voices?.length) availableVoices.value = data.voices
   } catch { /* keep defaults */ }
+  signedInSettingsLoaded.value = true
+}
+
+onMounted(async () => {
+  if (typeof route.query.tab === 'string') {
+    selectTab(route.query.tab, false)
+  }
+  await loadSignedInSettings()
 })
 
 watch(() => route.query.tab, (tab) => {
   if (typeof tab === 'string' && tab !== activeTab.value) {
     selectTab(tab, false)
+  }
+})
+
+watch(() => auth.isGuest, async (isGuest, wasGuest) => {
+  if (isGuest) {
+    signedInSettingsLoaded.value = false
+    return
+  }
+  if (wasGuest) {
+    await loadSignedInSettings()
   }
 })
 
