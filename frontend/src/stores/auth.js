@@ -7,6 +7,7 @@ export const useAuthStore = defineStore('auth', () => {
   const session = ref(null)
 
   const isAuthenticated = computed(() => !!session.value)
+  const isGuest = computed(() => !isAuthenticated.value)
   const token = computed(() => session.value?.access_token ?? null)
   const avatarUrl = computed(() => user.value?.user_metadata?.avatar_url ?? null)
   const displayName = computed(() =>
@@ -59,5 +60,5 @@ export const useAuthStore = defineStore('auth', () => {
     await supabase.auth.signOut()
   }
 
-  return { user, session, isAuthenticated, token, avatarUrl, displayName, init, signInWithEmail, signUpWithEmail, signInWithGoogle, signInWithGitHub, signOut }
+  return { user, session, isAuthenticated, isGuest, token, avatarUrl, displayName, init, signInWithEmail, signUpWithEmail, signInWithGoogle, signInWithGitHub, signOut }
 })
