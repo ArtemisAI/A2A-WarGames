@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { mount } from '@vue/test-utils'
 import { createI18n } from 'vue-i18n'
 import ProviderCard from '../components/settings/ProviderCard.vue'
@@ -42,8 +43,8 @@ describe('ProviderCard localization and responsive/theme styles', () => {
   })
 
   it('keeps responsive breakpoints and CSS variable-based colors for light/dark themes', () => {
-    const gridFile = readFileSync('/home/runner/work/A2A-WarGames/A2A-WarGames/frontend/src/components/settings/ProviderGrid.vue', 'utf8')
-    const cardFile = readFileSync('/home/runner/work/A2A-WarGames/A2A-WarGames/frontend/src/components/settings/ProviderCard.vue', 'utf8')
+    const gridFile = readFileSync(resolve(process.cwd(), 'src/components/settings/ProviderGrid.vue'), 'utf8')
+    const cardFile = readFileSync(resolve(process.cwd(), 'src/components/settings/ProviderCard.vue'), 'utf8')
 
     expect(gridFile).toContain('@media (max-width: 768px)')
     expect(gridFile).toContain('@media (max-width: 480px)')
