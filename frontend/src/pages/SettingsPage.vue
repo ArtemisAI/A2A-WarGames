@@ -199,19 +199,19 @@ onMounted(async () => {
         feature_flags: {},
       })
     }
-    await Promise.all([
-      fetchModels(),
-      providersStore.fetchPresets(),
-      providersStore.fetchKeys(),
-      providersStore.fetchModelRegistry(),
-    ]).catch(() => { /* individual fetches already handle errors */ })
-    try {
-      const { data } = await getAvailableVoices()
-      if (data?.voices?.length) availableVoices.value = data.voices
-    } catch { /* keep defaults */ }
   } catch (e) {
-    console.warn('[Settings] Backend unreachable, showing defaults:', e.message)
+    console.warn('[Settings] Profile loading failed, continuing to load providers:', e.message)
   }
+  await Promise.all([
+    fetchModels(),
+    providersStore.fetchPresets(),
+    providersStore.fetchKeys(),
+    providersStore.fetchModelRegistry(),
+  ]).catch(() => { /* individual fetches already handle errors */ })
+  try {
+    const { data } = await getAvailableVoices()
+    if (data?.voices?.length) availableVoices.value = data.voices
+  } catch { /* keep defaults */ }
 })
 
 watch(() => route.query.tab, (tab) => {
